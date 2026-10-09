@@ -1,0 +1,38 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		000000000000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		000000000000000000000002 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		000000000000000000000003 /* FreeFlixBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFlixBridge.swift; sourceTree = "<group>"; };
+		000000000000000000000004 /* StreamPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamPlayerViewController.swift; sourceTree = "<group>"; };
+		000000000000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		000000000000000000000006 /* renderer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ../renderer; sourceTree = "<group>"; };
+		000000000000000000000007 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ../config.json; sourceTree = "<group>"; };
+		000000000000000000000008 /* FreeFlix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeFlix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000009 /* Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000001; };
+		00000000000000000A /* Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000002; };
+		00000000000000000B /* Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000003; };
+		00000000000000000C /* Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000004; };
+		00000000000000000D /* renderer */ = {isa = PBXBuildFile; fileRef = 000000000000000000000006; };
+		00000000000000000E /* config.json */ = {isa = PBXBuildFile; fileRef = 000000000000000000000007; };
+		000000000000000010 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (000000000000000000000009, 00000000000000000000000A, 00000000000000000000000B, 00000000000000000000000C,); runOnlyForDeploymentPostprocessing = 0; };
+		000000000000000011 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (00000000000000000000000D, 00000000000000000000000E,); runOnlyForDeploymentPostprocessing = 0; };
+		000000000000000012 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		000000000000000013 /* FreeFlix */ = {isa = PBXGroup; children = (000000000000000000000001, 000000000000000000000002, 000000000000000000000003, 000000000000000000000004, 000000000000000000000005,); path = FreeFlix; sourceTree = "<group>"; };
+		000000000000000014 /* ios-app */ = {isa = PBXGroup; children = (000000000000000000000013, 000000000000000000000006, 000000000000000000000007, 000000000000000000000015,); sourceTree = "<group>"; };
+		000000000000000015 /* Products */ = {isa = PBXGroup; children = (000000000000000000000008,); name = Products; sourceTree = "<group>"; };
+		000000000000000016 /* Project root */ = {isa = PBXGroup; children = (000000000000000000000014,); sourceTree = "<group>"; };
+		000000000000000017 /* FreeFlix */ = {isa = PBXNativeTarget; buildConfigurationList = 000000000000000000000020; buildPhases = (000000000000000000000010, 000000000000000000000012, 000000000000000000000011,); buildRules = (); dependencies = (); name = FreeFlix; productName = FreeFlix; productReference = 000000000000000000000008; productType = "com.apple.product-type.application"; };
+		000000000000000018 /* Project */ = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600;}; buildConfigurationList = 00000000000000000000001F; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base,); mainGroup = 000000000000000000000016; productRefGroup = 000000000000000000000015; projectDirPath = ""; projectRoot = ""; targets = (000000000000000000000017,); };
+		000000000000000019 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Debug; };
+		00000000000000001A /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Release; };
+		00000000000000001B /* Target Debug */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGNING_ALLOWED = NO; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = FreeFlix/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = world.freeflix.ios; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = NO; TARGETED_DEVICE_FAMILY = "1,2";}; name = Debug; };
+		00000000000000001C /* Target Release */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGNING_ALLOWED = NO; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = FreeFlix/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = world.freeflix.ios; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = NO; TARGETED_DEVICE_FAMILY = "1,2";}; name = Release; };
+		00000000000000001F /* Project Configurations */ = {isa = XCConfigurationList; buildConfigurations = (000000000000000000000019, 00000000000000000000001A,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		000000000000000020 /* Target Configurations */ = {isa = XCConfigurationList; buildConfigurations = (00000000000000000000001B, 00000000000000000000001C,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+	};
+	rootObject = 000000000000000000000018;
+}

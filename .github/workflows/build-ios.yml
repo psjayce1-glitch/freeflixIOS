@@ -1,0 +1,44 @@
+name: Build FreeFlix iOS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "ios-app/**"
+      - "renderer/**"
+      - "config.json"
+      - ".github/workflows/build-ios.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure API credentials
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          INTRODB_API_KEY: ${{ secrets.INTRODB_API_KEY }}
+        run: |
+          node -e 'require("fs").writeFileSync("config.json", JSON.stringify({
+            tmdbApiKey: process.env.TMDB_API_KEY || "",
+            introdbApiKey: process.env.INTRODB_API_KEY || ""
+          }))'
+
+      - name: Build unsigned IPA
+        run: bash ios-app/build-ipa.sh
+
+      - name: Upload unsigned IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: FreeFlix-iOS-unsigned
+          path: dist/ios/FreeFlix-iOS.ipa
+          if-no-files-found: error
+          retention-days: 14

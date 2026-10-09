@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https: blob: data:; media-src 'self' https: blob: data:; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https:; frame-src * 'self' https: blob: data:;"
+    />
+    <meta name="referrer" content="origin" />
+    <title>FreeFlix</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Auth Screen -->
+    <div class="auth-screen" id="authScreen">
+      <div class="aurora" aria-hidden="true"></div>
+      <div class="auth-container glass">
+        <div class="auth-logo">
+          <div class="auth-logo-icon">
+            <img src="assets/logo.svg" alt="" />
+          </div>
+          <h1>FreeFlix</h1>
+          <p>Stream anything. Free forever.</p>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Log In</button>
+          <button class="auth-tab" data-tab="signup">Sign Up</button>
+        </div>
+        <form class="auth-form" id="authForm" autocomplete="off">
+          <div class="auth-field">
+            <label for="authUser">Username</label>
+            <input id="authUser" type="text" placeholder="Enter username" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="auth-field">
+            <label for="authPass">Password</label>
+            <input id="authPass" type="password" placeholder="Enter password" autocomplete="off" />
+          </div>
+          <div class="auth-field" id="authConfirmField" style="display:none;">
+            <label for="authConfirm">Confirm Password</label>
+            <input id="authConfirm" type="password" placeholder="Confirm password" autocomplete="off" />
+          </div>
+          <div class="auth-error" id="authError"></div>
+          <button class="auth-submit" type="submit" id="authSubmit">Log In</button>
+        </form>
+        <p class="auth-hint" id="authHint">Don't have an account? <a href="#" id="authSwitchLink">Sign up</a></p>
+      </div>
+    </div>
+
+    <div class="profile-picker-screen" id="profilePicker" hidden>
+      <div class="profile-picker-shell glass">
+        <div class="profile-picker-brand">
+          <img src="assets/logo.svg" alt="" onerror="this.style.display='none'" />
+          <span>FREEFLIX</span>
+        </div>
+        <h1>Who's watching today?</h1>
+        <p id="profilePickerAccount" class="profile-picker-account"></p>
+        <div id="profilePickerGrid" class="profile-picker-grid"></div>
+        <footer class="profile-picker-footer">
+          <span>Profiles are saved on this device.</span>
+          <button id="profilePickerSignout" type="button">Sign out</button>
+        </footer>
+      </div>
+    </div>
+
+    <div class="app-frame" id="appFrame" style="display:none;">
+      <div class="aurora" aria-hidden="true"></div>
+      <div class="catalog-splash" id="catalogSplash" role="status" aria-live="polite" hidden>
+        <div class="splash-content">
+          <img class="splash-mark" src="assets/logo.svg" alt="" />
+          <strong class="splash-wordmark">FREEFLIX</strong>
+          <span class="splash-status">Loading your movies and series</span>
+          <span class="splash-progress" aria-hidden="true"><span></span></span>
+        </div>
+      </div>
+
+      <header class="titlebar">
+        <div class="traffic">
+          <button class="dot close" data-win="close" title="Close"></button>
+          <button class="dot min" data-win="minimize" title="Minimize"></button>
+          <button class="dot max" data-win="maximize" title="Maximize"></button>
+        </div>
+        <div class="titlebar-drag"></div>
+        <div class="titlebar-search glass">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="M20 20l-3.2-3.2"></path>
+          </svg>
+          <input id="search" type="search" placeholder="Search movies & series..." autocomplete="off" />
+        </div>
+      </header>
+
+      <aside class="sidebar glass">
+        <div class="brand">
+          <img src="assets/logo.svg" alt="FreeFlix" onerror="this.style.display='none'" />
+          <div>
+            <strong>FreeFlix</strong>
+            <span>Streaming Library</span>
+          </div>
+        </div>
+
+        <nav>
+          <button class="nav-item active" data-view="home">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Home
+          </button>
+          <button class="nav-item" data-view="search" aria-label="Search">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            Search
+          </button>
+          <button class="nav-item" data-view="movies">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+            Movies
+          </button>
+          <button class="nav-item" data-view="series">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+            Series
+          </button>
+          <button class="nav-item" data-view="new">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            New
+          </button>
+          <button class="nav-item" data-view="list">
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            My List
+          </button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="profile glass">
+            <div class="avatar" id="userAvatar">?</div>
+            <div style="flex:1;min-width:0;">
+              <strong id="userName">Guest</strong>
+              <span>Streaming · In-App Player</span>
+            </div>
+            <button class="profile-action-btn" id="profileSettingsBtn" title="Account Settings" aria-label="Account Settings">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+                <circle cx="8" cy="6" r="2" fill="currentColor"></circle>
+                <circle cx="16" cy="12" r="2" fill="currentColor"></circle>
+                <circle cx="10" cy="18" r="2" fill="currentColor"></circle>
+              </svg>
+            </button>
+            <button class="profile-action-btn" id="switchProfileBtn" title="Switch profile" aria-label="Switch profile">↔</button>
+            <button class="logout-btn" id="logoutBtn" title="Log Out">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="stage" id="stage"></main>
+    </div>
+
+    <div class="sheet controller-keyboard" id="controllerKeyboard" hidden>
+      <section class="keyboard-panel" aria-label="On-screen search keyboard">
+        <header class="keyboard-heading">
+          <div><span>FREEFLIX SEARCH</span><strong id="keyboardQuery">Type a title</strong></div>
+          <button class="keyboard-action" data-key="close" aria-label="Close keyboard">Done</button>
+        </header>
+        <div class="keyboard-rows">
+          <div class="keyboard-row keyboard-number-row">
+            <button class="keyboard-key" data-key="1">1</button><button class="keyboard-key" data-key="2">2</button><button class="keyboard-key" data-key="3">3</button><button class="keyboard-key" data-key="4">4</button><button class="keyboard-key" data-key="5">5</button><button class="keyboard-key" data-key="6">6</button><button class="keyboard-key" data-key="7">7</button><button class="keyboard-key" data-key="8">8</button><button class="keyboard-key" data-key="9">9</button><button class="keyboard-key" data-key="0">0</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="keyboard-key" data-key="q">Q</button><button class="keyboard-key" data-key="w">W</button><button class="keyboard-key" data-key="e">E</button><button class="keyboard-key" data-key="r">R</button><button class="keyboard-key" data-key="t">T</button><button class="keyboard-key" data-key="y">Y</button><button class="keyboard-key" data-key="u">U</button><button class="keyboard-key" data-key="i">I</button><button class="keyboard-key" data-key="o">O</button><button class="keyboard-key" data-key="p">P</button>
+          </div>
+          <div class="keyboard-row keyboard-row-inset">
+            <button class="keyboard-key" data-key="a">A</button><button class="keyboard-key" data-key="s">S</button><button class="keyboard-key" data-key="d">D</button><button class="keyboard-key" data-key="f">F</button><button class="keyboard-key" data-key="g">G</button><button class="keyboard-key" data-key="h">H</button><button class="keyboard-key" data-key="j">J</button><button class="keyboard-key" data-key="k">K</button><button class="keyboard-key" data-key="l">L</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="keyboard-key" data-key="z">Z</button><button class="keyboard-key" data-key="x">X</button><button class="keyboard-key" data-key="c">C</button><button class="keyboard-key" data-key="v">V</button><button class="keyboard-key" data-key="b">B</button><button class="keyboard-key" data-key="n">N</button><button class="keyboard-key" data-key="m">M</button><button class="keyboard-action" data-key="backspace" aria-label="Backspace">⌫</button>
+          </div>
+          <div class="keyboard-row keyboard-symbol-row">
+            <button class="keyboard-key" data-key="@">@</button><button class="keyboard-key" data-key=".">.</button><button class="keyboard-key" data-key="_">_</button><button class="keyboard-key" data-key="-">-</button><button class="keyboard-key" data-key="!">!</button><button class="keyboard-key" data-key="#">#</button><button class="keyboard-key" data-key="$">$</button><button class="keyboard-key" data-key="?">?</button>
+          </div>
+          <div class="keyboard-row keyboard-bottom-row">
+            <button class="keyboard-action" data-key="clear">Clear</button><button class="keyboard-key keyboard-space" data-key="space">Space</button><button class="keyboard-action keyboard-search-action" data-key="close">Search</button>
+          </div>
+        </div>
+        <p class="keyboard-hint">D-pad or arrows to move · A or Enter to type · B or Esc to close</p>
+      </section>
+    </div>
+
+    <!-- Movie Detail Modal -->
+    <div class="sheet" id="detail" hidden></div>
+
+    <div class="sheet profile-settings-overlay" id="profileSettings" hidden>
+      <form class="profile-settings-modal" id="profileSettingsForm">
+        <header class="profile-settings-header">
+          <div>
+            <span class="settings-eyebrow">YOUR PROFILE</span>
+            <h2 id="profileSettingsTitle">Account settings</h2>
+          </div>
+          <button class="settings-close" type="button" id="profileSettingsClose" aria-label="Close settings">&times;</button>
+        </header>
+        <label class="settings-label" for="profileDisplayName">Display name</label>
+        <input class="settings-input" id="profileDisplayName" type="text" maxlength="24" autocomplete="nickname" />
+        <fieldset class="avatar-picker">
+          <legend class="settings-label">Choose your picture</legend>
+          <div class="avatar-options">
+            <button type="button" class="avatar-option" data-avatar="comet" aria-label="Comet avatar"><span>☄️</span></button>
+            <button type="button" class="avatar-option" data-avatar="popcorn" aria-label="Popcorn avatar"><span>🍿</span></button>
+            <button type="button" class="avatar-option" data-avatar="astronaut" aria-label="Astronaut avatar"><span>🧑‍🚀</span></button>
+            <button type="button" class="avatar-option" data-avatar="fox" aria-label="Fox avatar"><span>🦊</span></button>
+            <button type="button" class="avatar-option" data-avatar="alien" aria-label="Alien avatar"><span>👾</span></button>
+            <button type="button" class="avatar-option" data-avatar="tiger" aria-label="Tiger avatar"><span>🐯</span></button>
+            <button type="button" class="avatar-option" data-avatar="robot" aria-label="Robot avatar"><span>🤖</span></button>
+            <button type="button" class="avatar-option" data-avatar="spark" aria-label="Spark avatar"><span>⚡</span></button>
+          </div>
+        </fieldset>
+        <div id="profilePasswordSection">
+          <div class="settings-divider"></div>
+          <h3 class="password-heading">Change password <span>Optional</span></h3>
+          <div class="settings-password-grid">
+            <label class="settings-field" for="currentPassword">Current password<input class="settings-input" id="currentPassword" type="password" autocomplete="current-password" /></label>
+            <label class="settings-field" for="newPassword">New password<input class="settings-input" id="newPassword" type="password" minlength="4" autocomplete="new-password" /></label>
+          </div>
+        </div>
+        <p class="settings-error" id="profileSettingsError" role="alert"></p>
+        <footer class="settings-actions">
+          <button class="settings-cancel" type="button" id="profileSettingsCancel">Cancel</button>
+          <button class="settings-save" type="submit" id="profileSettingsSave">Save changes</button>
+        </footer>
+      </form>
+    </div>
+
+    <!-- Native In-App Theater Player -->
+    <div class="player" id="player" hidden></div>
+
+    <script src="android-bridge.js"></script>
+    <script src="tmdb.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

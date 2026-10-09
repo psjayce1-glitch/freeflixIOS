@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 768" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="42" x2="692" y2="754" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c1012"/>
+      <stop offset="0.58" stop-color="#050708"/>
+      <stop offset="1" stop-color="#020303"/>
+    </linearGradient>
+    <linearGradient id="red-front" x1="176" y1="192" x2="438" y2="578" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff3937"/>
+      <stop offset="0.55" stop-color="#e51b20"/>
+      <stop offset="1" stop-color="#c40012"/>
+    </linearGradient>
+    <linearGradient id="red-top" x1="223" y1="208" x2="376" y2="290" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fa3432"/>
+      <stop offset="1" stop-color="#d70d18"/>
+    </linearGradient>
+    <linearGradient id="red-fold" x1="182" y1="265" x2="246" y2="355" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f3443d"/>
+      <stop offset="1" stop-color="#c70b16"/>
+    </linearGradient>
+    <linearGradient id="red-edge" x1="240" y1="224" x2="251" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9d0711"/>
+      <stop offset="1" stop-color="#7c0710"/>
+    </linearGradient>
+    <filter id="drop-shadow" x="142" y="170" width="492" height="442" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="4" dy="12"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.48"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="768" height="768" fill="url(#bg)"/>
+  <g filter="url(#drop-shadow)">
+    <path d="M182 272 246 213v344l-64 7z" fill="url(#red-fold)"/>
+    <path d="M246 213 385 202v64l-139 12z" fill="url(#red-top)"/>
+    <path d="M246 356 373 344v63l-127 13z" fill="url(#red-front)"/>
+    <path d="M234 224 246 213v344l-12 1z" fill="url(#red-edge)" opacity="0.62"/>
+    <path d="m182 272 64-59v64l-64 56z" fill="#f1463d"/>
+    <path d="m246 277 139-11-13 12-126 11z" fill="#9b0912" opacity="0.82"/>
+    <path d="m246 420 127-13-12 13-115 12z" fill="#a20a13" opacity="0.7"/>
+    <path d="m411 271 64-63v344l-64-4z" fill="url(#red-fold)"/>
+    <path d="m475 208 111 15v62l-111-13z" fill="url(#red-top)"/>
+    <path d="m475 350 90 11v62l-90-12z" fill="url(#red-front)"/>
+    <path d="m463 220 12-12v344l-12-1z" fill="url(#red-edge)" opacity="0.62"/>
+    <path d="m411 271 64-63v64l-64 56z" fill="#ef4038"/>
+    <path d="m475 272 111 13-14 10-97-11z" fill="#94070f" opacity="0.82"/>
+    <path d="m475 411 90 12-13 12-77-10z" fill="#9b0912" opacity="0.72"/>
+  </g>
+</svg>
